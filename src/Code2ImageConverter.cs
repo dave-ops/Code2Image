@@ -24,7 +24,7 @@ public class CodeToImageConverter
 
             // Highlight the code using ColorCode.Core
             var formatter = new HtmlFormatter();
-            string highlighted = formatter.GetHtmlString(code, Languages.FindById(language) ?? Languages.CSharp, StyleSheets.DefaultDark);
+            string highlighted = formatter.GetHtmlString(code, Languages.FindById(language) ?? Languages.CSharp, ColorCode.Common.StyleSheets.DefaultDark);
 
             // Parse HTML to extract spans (simplified, as ColorCode outputs HTML)
             highlighted = Regex.Replace(highlighted, "<[^>]+>", match =>

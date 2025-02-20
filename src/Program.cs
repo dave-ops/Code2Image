@@ -20,7 +20,7 @@ class Program
         convertCommand.AddArgument(inputArgument);
         convertCommand.AddOption(outputOption);
 
-        convertCommand.SetHandler(async (input, output) =>
+        convertCommand.SetHandler((input, output) =>
         {
             if (string.IsNullOrEmpty(input))
             {
