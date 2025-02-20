@@ -20,7 +20,7 @@ class Program
         convertCommand.AddArgument(inputArgument);
         convertCommand.AddOption(outputOption);
 
-        convertCommand.SetHandler((input, output) =>
+        convertCommand.SetHandler(async (input, output) =>
         {
             if (string.IsNullOrEmpty(input))
             {
@@ -46,6 +46,7 @@ class Program
 
             ClipboardHelper.CopyMultipleImagesToClipboard(history);
             Console.WriteLine("Note: All images have been copied to the clipboard for pasting into a web upload control.");
+            await Task.CompletedTask; // Add await to satisfy async, even if no async work
         });
 
         rootCommand.Add(convertCommand);
