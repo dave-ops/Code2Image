@@ -22,10 +22,9 @@ public class CodeToImageConverter
             string extension = Path.GetExtension(inputFile).TrimStart('.').ToLower();
             string language = MapLanguage(extension);
 
-            // Highlight the code using ColorCode
+            // Highlight the code using ColorCode.Core
             var formatter = new HtmlFormatter();
-            var style = new Stylesheet(StyleDictionary.DefaultDark);
-            string highlighted = formatter.GetHtmlString(code, Languages.FindById(language));
+            string highlighted = formatter.GetHtmlString(code, Languages.FindById(language) ?? Languages.CSharp, StyleSheets.DefaultDark);
 
             // Parse HTML to extract spans (simplified, as ColorCode outputs HTML)
             highlighted = Regex.Replace(highlighted, "<[^>]+>", match =>

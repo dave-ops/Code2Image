@@ -1,5 +1,4 @@
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
 
@@ -16,7 +15,6 @@ public static class ClipboardHelper
         catch (Exception ex)
         {
             Console.WriteLine($"Error copying image to clipboard: {ex.Message}");
-            throw;
         }
     }
 
@@ -25,7 +23,7 @@ public static class ClipboardHelper
         try
         {
             var dataObject = new DataObject();
-            
+
             // Add each image as a file reference (FileDrop format)
             string[] files = imagePaths.ToArray();
             dataObject.SetData(DataFormats.FileDrop, files);
