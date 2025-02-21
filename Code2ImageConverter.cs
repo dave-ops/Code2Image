@@ -1,10 +1,10 @@
 // CodeToImageConverter.cs
 using ColorCode;
-using ColorCode.Custom;
 using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using ColorCode.HTML;
 
 public class CodeToImageConverter
 {
@@ -132,10 +132,9 @@ public class CodeToImageConverter
 
     private string HighlightCode(string code, string language)
     {
-        // Use custom HtmlFormatter and DefaultDarkStyleSheet for syntax highlighting
-        var formatter = new ColorCode.Custom.HtmlFormatter();
+        var formatter = new HtmlFormatter();
         ILanguage lang = Languages.FindById(language) ?? Languages.CSharp;
-        var styleSheet = new ColorCode.Custom.DefaultDarkStyleSheet();
+        var styleSheet = new DefaultDarkStyleSheet(); // Use the correct namespace/type
         return formatter.GetHtmlString(code, lang, styleSheet);
     }
 }

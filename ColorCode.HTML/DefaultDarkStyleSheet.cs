@@ -1,9 +1,8 @@
 using ColorCode;
-using ColorCode.Custom;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace ColorCode.Custom
+namespace ColorCode
 {
     public class DefaultDarkStyleSheet : IStyleSheet
     {
