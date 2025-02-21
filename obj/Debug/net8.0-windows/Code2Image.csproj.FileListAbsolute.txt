@@ -1,6 +1,0 @@
-C:\_dev\repos\Code2Image\obj\Debug\net8.0-windows\Code2Image.csproj.AssemblyReference.cache
-C:\_dev\repos\Code2Image\obj\Debug\net8.0-windows\Code2Image.GeneratedMSBuildEditorConfig.editorconfig
-C:\_dev\repos\Code2Image\obj\Debug\net8.0-windows\Code2Image.AssemblyInfoInputs.cache
-C:\_dev\repos\Code2Image\obj\Debug\net8.0-windows\Code2Image.AssemblyInfo.cs
-C:\_dev\repos\Code2Image\obj\Debug\net8.0-windows\Code2Image.csproj.CoreCompileInputs.cache
-C:\_dev\repos\Code2Image\obj\Debug\net8.0-windows\Code2Image.sourcelink.json
