@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Drawing;
-using ColorCode.Styling;
+using ColorCode.Custom;
 
 namespace ColorCode
 {

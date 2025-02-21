@@ -1,5 +1,5 @@
 using ColorCode;
-using ColorCode.Styling;
+using ColorCode.Custom;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -13,14 +13,22 @@ namespace ColorCode.Custom
         {
             _styles = new Dictionary<string, Style>
             {
-                // Define styles for DefaultDark, using properties or correct constructor
-                { "plain", new Style { Foreground = Brushes.White, FontStyle = FontStyle.Regular } }, // Default text (white)
-                { "keyword", new Style { Foreground = Brushes.FromArgb(86, 156, 214), FontStyle = FontStyle.Regular } }, // Blue for keywords
-                { "string", new Style { Foreground = Brushes.FromArgb(206, 145, 120), FontStyle = FontStyle.Regular } }, // Orange for strings
-                { "comment", new Style { Foreground = Brushes.FromArgb(106, 153, 85), FontStyle = FontStyle.Italic } }, // Green for comments (italic)
-                { "number", new Style { Foreground = Brushes.FromArgb(181, 206, 168), FontStyle = FontStyle.Regular } }, // Light green for numbers
-                { "function", new Style { Foreground = Brushes.FromArgb(220, 220, 170), FontStyle = FontStyle.Regular } } // Yellow for functions
+                // Define styles for DefaultDark, using custom Style with scopeName and CSS colors
+                { "plain", CreateStyle("plain", Brushes.White, FontStyle.Regular) },
+                { "keyword", CreateStyle("keyword", Color.FromArgb(86, 156, 214), FontStyle.Regular) },
+                { "string", CreateStyle("string", Color.FromArgb(206, 145, 120), FontStyle.Regular) },
+                { "comment", CreateStyle("comment", Color.FromArgb(106, 153, 85), FontStyle.Italic) },
+                { "number", CreateStyle("number", Color.FromArgb(181, 206, 168), FontStyle.Regular) },
+                { "function", CreateStyle("function", Color.FromArgb(220, 220, 170), FontStyle.Regular) }
             };
+        }
+
+        private Style CreateStyle(string scopeName, Color color, FontStyle fontStyle)
+        {
+            var style = new Style(scopeName);
+            style.Foreground = $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+            style.FontStyle = fontStyle;
+            return style;
         }
 
         public IEnumerable<KeyValuePair<string, Style>> Styles => _styles;
