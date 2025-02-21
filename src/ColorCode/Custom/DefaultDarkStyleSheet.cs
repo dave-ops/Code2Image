@@ -13,8 +13,7 @@ namespace ColorCode.Custom
         {
             _styles = new Dictionary<string, Style>
             {
-                // Define styles for DefaultDark, using custom Style with scopeName and CSS colors
-                { "plain", CreateStyle("plain", Brushes.White, FontStyle.Regular) },
+                { "plain", CreateStyle("plain", Color.White, FontStyle.Regular) },
                 { "keyword", CreateStyle("keyword", Color.FromArgb(86, 156, 214), FontStyle.Regular) },
                 { "string", CreateStyle("string", Color.FromArgb(206, 145, 120), FontStyle.Regular) },
                 { "comment", CreateStyle("comment", Color.FromArgb(106, 153, 85), FontStyle.Italic) },
@@ -26,7 +25,7 @@ namespace ColorCode.Custom
         private Style CreateStyle(string scopeName, Color color, FontStyle fontStyle)
         {
             var style = new Style(scopeName);
-            style.Foreground = $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+            style.SetForegroundFromBrush(new SolidBrush(color));
             style.FontStyle = fontStyle;
             return style;
         }

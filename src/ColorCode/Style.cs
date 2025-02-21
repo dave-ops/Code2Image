@@ -1,11 +1,11 @@
 using System.Drawing;
 
-namespace ColorCode.Custom
+namespace ColorCode
 {
     public class Style
     {
         public string ScopeName { get; }
-        public string Foreground { get; set; } // CSS color (e.g., "#FFFFFF")
+        public string Foreground { get; set; } = "#FFFFFF"; // Default white color
         public FontStyle? FontStyle { get; set; }
 
         public Style(string scopeName)
@@ -13,7 +13,6 @@ namespace ColorCode.Custom
             ScopeName = scopeName ?? throw new ArgumentNullException(nameof(scopeName));
         }
 
-        // Helper method to convert Brush to CSS color string
         public void SetForegroundFromBrush(Brush brush)
         {
             if (brush is SolidBrush solidBrush)

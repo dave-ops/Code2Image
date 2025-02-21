@@ -1,5 +1,6 @@
+// CodeToImageConverter.cs
 using ColorCode;
-using ColorCode.Custom; // Add this for the custom HtmlFormatter
+using ColorCode.Custom;
 using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -23,7 +24,7 @@ public class CodeToImageConverter
             string extension = Path.GetExtension(inputFile).TrimStart('.').ToLower();
             string language = MapLanguage(extension);
 
-            // Highlight the code using custom HtmlFormatter
+            // Highlight the code using custom HtmlFormatter and DefaultDarkStyleSheet
             string highlighted = HighlightCode(code, language);
 
             // Parse HTML to extract spans (simplified, as ColorCode outputs HTML)
@@ -61,7 +62,8 @@ public class CodeToImageConverter
                 { "string", Color.FromArgb(206, 145, 120) },   // Orange
                 { "comment", Color.FromArgb(106, 153, 85) },   // Green
                 { "number", Color.FromArgb(181, 206, 168) },   // Light green
-                { "function", Color.FromArgb(220, 220, 170) }  // Yellow
+                { "function", Color.FromArgb(220, 220, 170) }, // Yellow
+                { "plain", Color.White }                       // Default (white)
             };
 
             foreach (string line in lines)
@@ -123,15 +125,17 @@ public class CodeToImageConverter
             "comment" => "#6A9955",
             "number" => "#B5CEA8",
             "function" => "#DCDCAA",
+            "plain" => "#FFFFFF",
             _ => "#FFFFFF"
         };
     }
 
     private string HighlightCode(string code, string language)
     {
-        // Use custom HtmlFormatter for syntax highlighting
-        var formatter = new Custom.HtmlFormatter();
+        // Use custom HtmlFormatter and DefaultDarkStyleSheet for syntax highlighting
+        var formatter = new ColorCode.Custom.HtmlFormatter();
         ILanguage lang = Languages.FindById(language) ?? Languages.CSharp;
-        return formatter.GetHtmlString(code, lang, ColorCode.StyleSheets.DefaultDark);
+        var styleSheet = new ColorCode.Custom.DefaultDarkStyleSheet();
+        return formatter.GetHtmlString(code, lang, styleSheet);
     }
 }

@@ -1,5 +1,4 @@
-
-using ColorCode;
+// HtmlFormatter.cs
 using System.Text;
 
 namespace ColorCode.Custom
@@ -20,10 +19,10 @@ namespace ColorCode.Custom
             StringBuilder html = new StringBuilder();
             html.AppendLine("<pre><code>");
 
-            var tokens = language.GetTokens(code);
+            var tokens = language.GetFormattedTokens(code);
             foreach (var token in tokens)
             {
-                string className = MapScopeToClass(token.Scope);
+                string className = styleSheet.GetClassName(token.Scope);
                 if (!string.IsNullOrEmpty(className))
                 {
                     html.Append($"<span class=\"{className}\">{HtmlEncode(token.Text)}</span>");
@@ -36,20 +35,6 @@ namespace ColorCode.Custom
 
             html.AppendLine("</code></pre>");
             return html.ToString();
-        }
-
-        private string MapScopeToClass(string scope)
-        {
-            // Map ColorCode scopes to CSS classes based on DefaultDark style
-            return scope switch
-            {
-                "keyword" => "keyword",
-                "string" => "string",
-                "comment" => "comment",
-                "number" => "number",
-                "function" => "function",
-                _ => null // Default to no class (plain text)
-            };
         }
 
         private string HtmlEncode(string text)
