@@ -1,4 +1,5 @@
 using ColorCode;
+using ColorCode.Custom; // Add this for the custom HtmlFormatter
 using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -22,9 +23,8 @@ public class CodeToImageConverter
             string extension = Path.GetExtension(inputFile).TrimStart('.').ToLower();
             string language = MapLanguage(extension);
 
-            // Highlight the code using ColorCode.Core
-            var formatter = new HtmlFormatter();
-            string highlighted = formatter.GetHtmlString(code, Languages.FindById(language) ?? Languages.CSharp, ColorCode.StyleSheets.DefaultDark);
+            // Highlight the code using custom HtmlFormatter
+            string highlighted = HighlightCode(code, language);
 
             // Parse HTML to extract spans (simplified, as ColorCode outputs HTML)
             highlighted = Regex.Replace(highlighted, "<[^>]+>", match =>
@@ -57,11 +57,11 @@ public class CodeToImageConverter
             float y = Padding;
             Dictionary<string, Color> colors = new()
             {
-                { "keyword", Color.FromArgb(86, 156, 214) },
-                { "string", Color.FromArgb(206, 145, 120) },
-                { "comment", Color.FromArgb(106, 153, 85) },
-                { "number", Color.FromArgb(181, 206, 168) },
-                { "function", Color.FromArgb(220, 220, 170) }
+                { "keyword", Color.FromArgb(86, 156, 214) },   // Blue
+                { "string", Color.FromArgb(206, 145, 120) },   // Orange
+                { "comment", Color.FromArgb(106, 153, 85) },   // Green
+                { "number", Color.FromArgb(181, 206, 168) },   // Light green
+                { "function", Color.FromArgb(220, 220, 170) }  // Yellow
             };
 
             foreach (string line in lines)
@@ -125,5 +125,13 @@ public class CodeToImageConverter
             "function" => "#DCDCAA",
             _ => "#FFFFFF"
         };
+    }
+
+    private string HighlightCode(string code, string language)
+    {
+        // Use custom HtmlFormatter for syntax highlighting
+        var formatter = new Custom.HtmlFormatter();
+        ILanguage lang = Languages.FindById(language) ?? Languages.CSharp;
+        return formatter.GetHtmlString(code, lang, ColorCode.StyleSheets.DefaultDark);
     }
 }
