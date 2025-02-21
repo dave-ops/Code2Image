@@ -1,4 +1,5 @@
 using ColorCode;
+using ColorCode.Styling;
 using System.Collections.Generic;
 using System.Drawing;
 
