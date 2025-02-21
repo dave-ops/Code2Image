@@ -2,19 +2,6 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
-      "ColorCode.Core/2.0.15": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/ColorCode.Core.dll": {
-            "related": ".pdb"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/ColorCode.Core.dll": {
-            "related": ".pdb"
-          }
-        }
-      },
       "Microsoft.Win32.SystemEvents/8.0.0": {
         "type": "package",
         "compile": {
@@ -104,7 +91,7 @@
           }
         }
       },
-      "System.Drawing.Common/8.0.0": {
+      "System.Drawing.Common/8.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "8.0.0"
@@ -126,21 +113,6 @@
     }
   },
   "libraries": {
-    "ColorCode.Core/2.0.15": {
-      "sha512": "hHU8nzyapaQJUjeGp/T2SRDPLWbNCpCS67SDwSvF2pLMbq3Xe1PUGG8MUM63C3bG9tz9WrI7Rdd/VaTfHh/7qQ==",
-      "type": "package",
-      "path": "colorcode.core/2.0.15",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "colorcode.core.2.0.15.nupkg.sha512",
-        "colorcode.core.nuspec",
-        "lib/netstandard1.4/ColorCode.Core.dll",
-        "lib/netstandard1.4/ColorCode.Core.pdb",
-        "lib/netstandard2.0/ColorCode.Core.dll",
-        "lib/netstandard2.0/ColorCode.Core.pdb"
-      ]
-    },
     "Microsoft.Win32.SystemEvents/8.0.0": {
       "sha512": "9opKRyOKMCi2xJ7Bj7kxtZ1r9vbzosMvRrdEhVhDz8j8MoBGgB+WmC94yH839NPH+BclAjtQ/pyagvi/8gDLkw==",
       "type": "package",
@@ -250,10 +222,10 @@
         "system.commandline.nuspec"
       ]
     },
-    "System.Drawing.Common/8.0.0": {
-      "sha512": "JkbHJjtI/dWc5dfmEdJlbe3VwgZqCkZRtfuWFh5GOv0f+gGCfBtzMpIVkmdkj2AObO9y+oiOi81UGwH3aBYuqA==",
+    "System.Drawing.Common/8.0.1": {
+      "sha512": "x0rAZECxIGx/YVjN28YRdpqka0+H7YMN9741FUDzipXPDzesd60gef/LI0ZCOcYSDsacTLTHvMAvxHG+TjbNNQ==",
       "type": "package",
-      "path": "system.drawing.common/8.0.0",
+      "path": "system.drawing.common/8.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -285,7 +257,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "system.drawing.common.8.0.0.nupkg.sha512",
+        "system.drawing.common.8.0.1.nupkg.sha512",
         "system.drawing.common.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -293,10 +265,9 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "ColorCode.Core >= 2.0.15",
       "Newtonsoft.Json >= 13.0.3",
       "System.CommandLine >= 2.0.0-beta4.22272.1",
-      "System.Drawing.Common >= 8.0.0"
+      "System.Drawing.Common >= 8.0.1"
     ]
   },
   "packageFolders": {
@@ -350,10 +321,6 @@
       "net8.0-windows7.0": {
         "targetAlias": "net8.0-windows",
         "dependencies": {
-          "ColorCode.Core": {
-            "target": "Package",
-            "version": "[2.0.15, )"
-          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
@@ -364,7 +331,7 @@
           },
           "System.Drawing.Common": {
             "target": "Package",
-            "version": "[8.0.0, )"
+            "version": "[8.0.1, )"
           }
         },
         "imports": [
